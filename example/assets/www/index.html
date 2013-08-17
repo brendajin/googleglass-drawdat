@@ -28,17 +28,17 @@
 
     <body>
  
- <canvas id="b" width="500" height="500"></canvas>
+ <canvas id="b"></canvas>
 
    <script>
-function draw_b() {
-  var b_canvas = document.getElementById("b");
-  var b_context = b_canvas.getContext("2d");
-  b_context.fillRect(50, 25, 150, 1);
-
-}
-draw_b()
-</script>
+    function draw_b() {
+        var b_canvas = document.getElementById("b");
+        var b_context = b_canvas.getContext("2d");
+        b_canvas.width = document.width; 
+        b_canvas.height = document.height;
+        b_context.fillRect(50, 25, 150, 1);        
+    }
+    draw_b()
 
 
         <!-- <div class="app">
