@@ -72,7 +72,7 @@
                 b_canvas.height = document.height;
                 
                 b_context.beginPath();
-                b_context.moveTo(document.body.width/2, document.body.height/2);
+                b_context.moveTo(document.width/2, document.height/2);
 
                 navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:20});
             }
@@ -84,7 +84,7 @@
                 // 'Acceleration Y: ' + acceleration.y + '\n' +
                 // 'Acceleration Z: ' + acceleration.z + '\n' +
                 // 'Timestamp: '      + acceleration.timestamp + '\n';
-                var x = parseInt(acceleration.x*10);
+                var x = parseInt(acceleration.x*10+document.width/2);
                 var y = parseInt(acceleration.y*10); 
                 console.log(x,y);
                 draw_b(x,y);
