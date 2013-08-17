@@ -28,19 +28,18 @@
 
     <body>
  
- <canvas id="b"></canvas>
+        <canvas id="b"></canvas>
 
-   <script>
-    function draw_b() {
-        var b_canvas = document.getElementById("b");
-        var b_context = b_canvas.getContext("2d");
-        b_canvas.width = document.width; 
-        b_canvas.height = document.height;
-        b_context.fillRect(50, 25, 150, 100);
-        
-    }
-    draw_b()
-</script>
+        <script>
+            function draw_b() {
+                var b_canvas = document.getElementById("b");
+                var b_context = b_canvas.getContext("2d");
+                b_canvas.width = document.width; //make the width the whole document width
+                b_canvas.height = document.height; //make the height the whole document height
+                b_context.fillRect(50, 25, 150, 100);
+            }
+            draw_b()
+        </script>
 
 
         <!-- <div class="app">
