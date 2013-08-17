@@ -23,16 +23,26 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Drawdat</title>
+        <title>DrawDat</title>
     </head>
 
     <body>
  
         <canvas id="b"></canvas>
 
-        <script>
+        <div class="app">
+            <h1>DrawDat</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="cordova-2.7.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript"> 
             function draw_b(x,y) {
-                var b_canvas = document.getElementById("b");
+                var b_canvas = document.getElementById("b_canvas");
                 var b_context = b_canvas.getContext("2d");
                 b_canvas.width = document.width; 
                 b_canvas.height = document.height;
@@ -42,56 +52,44 @@
                
                 b_context.stroke();       
             }
-            //draw_b()
-
-        </script>
-
-<!--    b_context.beginPath();
-            b_context.moveTo(100, 150);
-            b_context.lineTo(450, 50);
-            b_context.stroke(); -->
-
-        <!-- <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div> -->
-
-        <!-- <script type="text/javascript" src="cordova-2.7.0.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript"> 
-        //     app.initialize();
+            app.initialize();
             
-        //     // Listen for 'touchpad' events, which get registered as keydown events with keyCode 9 and 13
-        //     document.addEventListener('keydown',keyController);
+            // Listen for 'touchpad' events, which get registered as keydown events with keyCode 9 and 13
+            // document.addEventListener('keydown',keyController);
 
-        //     function keyController(e){
-        //         // Show results in document body
-        //         document.body.innerHTML = e.keyCode;
-        //     }
+            function keyController(e){
+                // Show results in document body
+                document.body.innerHTML = e.keyCode;
+            }
 
-        //     // Device APIs are available
-        //     document.addEventListener('deviceready',onDeviceReady);
-        //     function onDeviceReady() {
-        //         navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:2000});
-        //     }
+            // Device APIs are available
+            document.addEventListener('deviceready',onDeviceReady);
+            function onDeviceReady() {
+                document.body.innerHTML = '';
+                var canvas = document.createElement('canvas');
+                canvas.id = "b_canvas";
+                document.body.appendChild(canvas);
 
-        //     // onSuccess: Get a snapshot of the current acceleration
-        //     function onSuccess(acceleration) {
-        //         // Show results in document body
-        //         document.body.innerHTML='Acceleration X: ' + acceleration.x + '\n' +
-        //         'Acceleration Y: ' + acceleration.y + '\n' +
-        //         'Acceleration Z: ' + acceleration.z + '\n' +
-        //         'Timestamp: '      + acceleration.timestamp + '\n';
-        //     }
+                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:2000});
+            }
 
-        //     function onError() {
-        //         // Show results in document body
-        //         document.body.innerHTML = 'accelerometer error';
-        //     }
+            // onSuccess: Get a snapshot of the current acceleration
+            function onSuccess(acceleration) {
+                // Show results in document body
+                // document.body.innerHTML='Acceleration X: ' + acceleration.x + '\n' +
+                // 'Acceleration Y: ' + acceleration.y + '\n' +
+                // 'Acceleration Z: ' + acceleration.z + '\n' +
+                // 'Timestamp: '      + acceleration.timestamp + '\n';
 
-        // </script> --> 
+                draw_b(parseInt(acceleration.x*50+100),parseInt(acceleration.y*50+100));
+            }
+
+
+            function onError() {
+                // Show results in document body
+                document.body.innerHTML = 'accelerometer error';
+            }
+
+        </script> 
     </body>
 </html>
