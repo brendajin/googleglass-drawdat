@@ -30,24 +30,27 @@
  
         <canvas id="b"></canvas>
 
-        <div class="app">
+        <!-- <div class="app">
             <h1>DrawDat</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-        </div>
+        </div> -->
 
         <script type="text/javascript" src="cordova-2.7.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript"> 
             var b_canvas, b_context;
-
+            var last_x = document.width/2, last_y = document.height/2;
+            
             function draw_b(x,y) {        
-                // b_context.moveTo(50, 50);
-                b_context.lineTo(x, y);               
+
+                b_context.lineTo(parseInt(last_x+x*-25), parseInt(last_y+10*y));  
+                b_context.strokeStyle = '#FFFFFF';
                 b_context.stroke();       
             }
+
             app.initialize();
             
             // Listen for 'touchpad' events, which get registered as keydown events with keyCode 9 and 13
@@ -71,23 +74,22 @@
                 b_canvas.width = document.width; 
                 b_canvas.height = document.height;
                 
-                b_context.beginPath();
-                b_context.moveTo(document.width/2, document.height/2);
+                b_context.lineWidth = 10;
 
-                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:20});
+                
+                b_context.beginPath();
+                b_context.moveTo(last_x,last_y);
+
+                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:100});
             }
 
             // onSuccess: Get a snapshot of the current acceleration
             function onSuccess(acceleration) {
-                // Show results in document body
-                // document.body.innerHTML='Acceleration X: ' + acceleration.x + '\n' +
-                // 'Acceleration Y: ' + acceleration.y + '\n' +
-                // 'Acceleration Z: ' + acceleration.z + '\n' +
-                // 'Timestamp: '      + acceleration.timestamp + '\n';
-                var x = parseInt(acceleration.x*10+document.width/2);
-                var y = parseInt(acceleration.y*10); 
-                console.log(x,y);
-                draw_b(x,y);
+
+                var x = parseInt(acceleration.x*20+document.width/2);
+                var y = parseInt(acceleration.y*20); 
+                console.log(acceleration.x, acceleration.y);
+                draw_b(acceleration.x,acceleration.y);
             }
 
 
