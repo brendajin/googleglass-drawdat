@@ -31,15 +31,25 @@
         <canvas id="b"></canvas>
 
         <script>
-            function draw_b() {
+            function draw_b(x,y) {
                 var b_canvas = document.getElementById("b");
                 var b_context = b_canvas.getContext("2d");
                 b_canvas.width = document.width; 
                 b_canvas.height = document.height;
-                b_context.fillRect(50, 25, 150, 1);        
+                b_context.beginPath();
+                b_context.moveTo(50, 50);
+                b_context.lineTo(x, y);
+               
+                b_context.stroke();       
             }
-            draw_b()
+            //draw_b()
+
         </script>
+
+<!--    b_context.beginPath();
+            b_context.moveTo(100, 150);
+            b_context.lineTo(450, 50);
+            b_context.stroke(); -->
 
         <!-- <div class="app">
             <h1>Apache Cordova</h1>
