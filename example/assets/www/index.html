@@ -23,49 +23,65 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <title>Drawdat</title>
     </head>
+
     <body>
-        <div class="app">
+ 
+ <canvas id="b" width="100%" height="100%"></canvas>
+
+   <script>
+function draw_b() {
+  var b_canvas = document.getElementById("b");
+  var b_context = b_canvas.getContext("2d");
+  b_context.fillRect(50, 25, 150, 100);
+
+}
+draw_b()
+</script>
+
+
+        <!-- <div class="app">
             <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-        </div>
-        <script type="text/javascript" src="cordova-2.7.0.js"></script>
+        </div> -->
+
+        <!-- <script type="text/javascript" src="cordova-2.7.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
+        <script type="text/javascript"> 
+        //     app.initialize();
             
-            // Listen for 'touchpad' events, which get registered as keydown events with keyCode 9 and 13
-            document.addEventListener('keydown',keyController);
+        //     // Listen for 'touchpad' events, which get registered as keydown events with keyCode 9 and 13
+        //     document.addEventListener('keydown',keyController);
 
-            function keyController(e){
-                // Show results in document body
-                document.body.innerHTML = e.keyCode;
-            }
+        //     function keyController(e){
+        //         // Show results in document body
+        //         document.body.innerHTML = e.keyCode;
+        //     }
 
-            // Device APIs are available
-            document.addEventListener('deviceready',onDeviceReady);
-            function onDeviceReady() {
-                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:2000});
-            }
+        //     // Device APIs are available
+        //     document.addEventListener('deviceready',onDeviceReady);
+        //     function onDeviceReady() {
+        //         navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:2000});
+        //     }
 
-            // onSuccess: Get a snapshot of the current acceleration
-            function onSuccess(acceleration) {
-                // Show results in document body
-                document.body.innerHTML='Acceleration X: ' + acceleration.x + '\n' +
-                'Acceleration Y: ' + acceleration.y + '\n' +
-                'Acceleration Z: ' + acceleration.z + '\n' +
-                'Timestamp: '      + acceleration.timestamp + '\n';
-            }
+        //     // onSuccess: Get a snapshot of the current acceleration
+        //     function onSuccess(acceleration) {
+        //         // Show results in document body
+        //         document.body.innerHTML='Acceleration X: ' + acceleration.x + '\n' +
+        //         'Acceleration Y: ' + acceleration.y + '\n' +
+        //         'Acceleration Z: ' + acceleration.z + '\n' +
+        //         'Timestamp: '      + acceleration.timestamp + '\n';
+        //     }
 
-            function onError() {
-                // Show results in document body
-                document.body.innerHTML = 'accelerometer error';
-            }
+        //     function onError() {
+        //         // Show results in document body
+        //         document.body.innerHTML = 'accelerometer error';
+        //     }
 
-        </script>
+        // </script> --> 
     </body>
 </html>
