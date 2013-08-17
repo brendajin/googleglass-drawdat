@@ -41,15 +41,11 @@
         <script type="text/javascript" src="cordova-2.7.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript"> 
-            function draw_b(x,y) {
-                var b_canvas = document.getElementById("b_canvas");
-                var b_context = b_canvas.getContext("2d");
-                b_canvas.width = document.width; 
-                b_canvas.height = document.height;
-                b_context.beginPath();
-                b_context.moveTo(50, 50);
-                b_context.lineTo(x, y);
-               
+            var b_canvas, b_context;
+
+            function draw_b(x,y) {        
+                // b_context.moveTo(50, 50);
+                b_context.lineTo(x, y);               
                 b_context.stroke();       
             }
             app.initialize();
@@ -70,7 +66,15 @@
                 canvas.id = "b_canvas";
                 document.body.appendChild(canvas);
 
-                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:2000});
+                b_canvas = document.getElementById("b_canvas");
+                b_context = b_canvas.getContext("2d");
+                b_canvas.width = document.width; 
+                b_canvas.height = document.height;
+                
+                b_context.beginPath();
+                b_context.moveTo(document.body.width/2, document.body.height/2);
+
+                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:20});
             }
 
             // onSuccess: Get a snapshot of the current acceleration
@@ -80,8 +84,10 @@
                 // 'Acceleration Y: ' + acceleration.y + '\n' +
                 // 'Acceleration Z: ' + acceleration.z + '\n' +
                 // 'Timestamp: '      + acceleration.timestamp + '\n';
-
-                draw_b(parseInt(acceleration.x*50+100),parseInt(acceleration.y*50+100));
+                var x = parseInt(acceleration.x*10);
+                var y = parseInt(acceleration.y*10); 
+                console.log(x,y);
+                draw_b(x,y);
             }
 
 
