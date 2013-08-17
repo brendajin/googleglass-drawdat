@@ -30,13 +30,13 @@
  
         <canvas id="b"></canvas>
 
-        <!-- <div class="app">
-            <h1>DrawDat</h1>
+        <h1>Ready, set, draw!</h1>
+        <div class="app">
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-        </div> -->
+        </div>
 
         <script type="text/javascript" src="cordova-2.7.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -80,7 +80,7 @@
                 b_context.beginPath();
                 b_context.moveTo(last_x,last_y);
 
-                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:100});
+                navigator.accelerometer.watchAcceleration(onSuccess, onError, {frequency:250});
             }
 
             // onSuccess: Get a snapshot of the current acceleration
